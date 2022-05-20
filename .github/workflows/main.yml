@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,7 +37,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/onlineshop:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/todoprojek
       - 
         name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
