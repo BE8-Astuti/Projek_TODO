@@ -45,7 +45,6 @@ func (t *ControlTask) CreateTask() echo.HandlerFunc {
 			UserID:   uint(UserID),
 			ProjekID: Insert.ProjekID,
 			Name:     Insert.Name,
-			Duedate:  Insert.Duedate,
 		}
 		result, errCreate := t.Repo.CreateTask(NewAdd, uint(UserID))
 		if errCreate != nil {

@@ -1,14 +1,14 @@
 package projek
 
 type InsertPro struct {
-	UserID      uint   `json:"userid"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Contributor string `json:"contributor"`
+	UserID   uint   `json:"userid" validate:"required"`
+	Title string   `json:"title" validate:"required"`
+	Description     string `json:"description" validate:"required"`
+	Contributor string `json:"contributor" validate:"required"`
 }
 
 type UpdatePro struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Contributor string `json:"contributor"`
+	Title string   `json:"title" validate:"required"`
+	Description     string `json:"description" validate:"required"`
+	Contributor string `json:"contributor" validate:"required"`
 }

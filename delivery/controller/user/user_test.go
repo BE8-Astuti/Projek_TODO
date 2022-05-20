@@ -28,11 +28,11 @@ func TestInsertUser(t *testing.T) {
 	t.Run("Success Insert", func(t *testing.T) {
 		e := echo.New()
 		requestBody, _ := json.Marshal(map[string]interface{}{
-			"name":     "yani",
+			"username": "okesip123",
+			"name":     "yanii",
 			"email":    "y",
 			"password": "849",
 			"phone":    "77979799",
-			"status":   "starseller",
 		})
 		req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(string(requestBody)))
 		req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON) // Set Content to JSON
@@ -62,7 +62,11 @@ func TestInsertUser(t *testing.T) {
 	t.Run("Error Validasi", func(t *testing.T) {
 		e := echo.New()
 		requestBody, _ := json.Marshal(map[string]interface{}{
-			"password": "779",
+
+			"name":     "yanii",
+			"email":    "y",
+			"password": "849",
+			"phone":    "77979799",
 		})
 
 		req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(string(requestBody)))
@@ -92,7 +96,11 @@ func TestInsertUser(t *testing.T) {
 	t.Run("Error Bind", func(t *testing.T) {
 		e := echo.New()
 		requestBody, _ := json.Marshal(map[string]interface{}{
-			"phone": "779",
+			"username": "yani123",
+			"name":     "yanii",
+			"email":    "y",
+			"password": 849,
+			"phone":    "77979799",
 		})
 
 		req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(string(requestBody)))
@@ -121,8 +129,9 @@ func TestInsertUser(t *testing.T) {
 	t.Run("Error Insert DB", func(t *testing.T) {
 		e := echo.New()
 		requestBody, _ := json.Marshal(map[string]interface{}{
-			"name":     "yani",
-			"email":    "y@gmail.com",
+			"username": "yani123",
+			"name":     "yanii",
+			"email":    "y",
 			"password": "849",
 			"phone":    "77979799",
 		})
@@ -164,7 +173,7 @@ func TestGetUserbyID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("3")
 		GetUser := New(&mockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.GetUserbyID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.GetUserbyID())(context)
 		type Response struct {
 			Code    int         `json:"code"`
 			Message string      `json:"message"`
@@ -192,7 +201,7 @@ func TestGetUserbyID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("c")
 		GetUser := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.GetUserbyID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.GetUserbyID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -218,7 +227,7 @@ func TestGetUserbyID(t *testing.T) {
 		context.SetParamValues("3")
 
 		userController := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(userController.GetUserbyID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(userController.GetUserbyID())(context)
 
 		type Response struct {
 			Code    int
@@ -246,7 +255,7 @@ func TestGetUserbyID(t *testing.T) {
 		context.SetParamValues("2")
 
 		userController := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(userController.GetUserbyID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(userController.GetUserbyID())(context)
 
 		type Response struct {
 			Code    int
@@ -280,7 +289,7 @@ func TestUpdateUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("3")
 		UserCont := New(&mockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(UserCont.UpdateUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(UserCont.UpdateUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -310,7 +319,7 @@ func TestUpdateUserID(t *testing.T) {
 		context.SetParamValues("3")
 
 		userController := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(userController.UpdateUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(userController.UpdateUserID())(context)
 
 		type response struct {
 			Code    int
@@ -339,7 +348,7 @@ func TestUpdateUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("c")
 		GetUser := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.UpdateUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.UpdateUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -365,7 +374,7 @@ func TestUpdateUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("3")
 		GetUser := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.UpdateUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.UpdateUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -391,7 +400,7 @@ func TestUpdateUserID(t *testing.T) {
 		context.SetParamValues("2")
 
 		userController := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(userController.UpdateUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(userController.UpdateUserID())(context)
 
 		type Response struct {
 			Code    int
@@ -423,7 +432,7 @@ func TestDeleteUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("3")
 		GetUser := New(&mockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.DeleteUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.DeleteUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -449,7 +458,7 @@ func TestDeleteUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("C")
 		GetUser := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.DeleteUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.DeleteUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -475,7 +484,7 @@ func TestDeleteUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("3")
 		GetUser := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.DeleteUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.DeleteUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -501,7 +510,7 @@ func TestDeleteUserID(t *testing.T) {
 		context.SetParamNames("id")
 		context.SetParamValues("6")
 		GetUser := New(&erorrMockUserRepository{}, validator.New())
-		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TOGETHER")})(GetUser.DeleteUserID())(context)
+		middleware.JWTWithConfig(middleware.JWTConfig{SigningMethod: "HS256", SigningKey: []byte("TODO")})(GetUser.DeleteUserID())(context)
 		type Response struct {
 			Code    int
 			Message string
@@ -645,27 +654,27 @@ func TestLogin(t *testing.T) {
 type mockUserRepository struct{}
 
 func (mur *mockUserRepository) InsertUser(newUser entities.User) (entities.User, error) {
-	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Status: "starseller"}, nil
+	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Gender: "perempuan"}, nil
 }
 
 func (mur *mockUserRepository) GetAllUser() ([]entities.User, error) {
-	return []entities.User{{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Status: "starseller"}}, nil
+	return []entities.User{{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Gender: "perempuan"}}, nil
 }
 
 func (mur *mockUserRepository) GetUserID(ID int) (entities.User, error) {
-	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Status: "starseller"}, nil
+	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Gender: "perempuan"}, nil
 }
 
 func (mur *mockUserRepository) UpdateUser(ID int, update entities.User) (entities.User, error) {
-	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Status: "starseller"}, nil
+	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Gender: "perempuan"}, nil
 }
 
 func (mur *mockUserRepository) DeleteUser(ID int) (entities.User, error) {
-	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Status: "starseller"}, nil
+	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Gender: "perempuan"}, nil
 }
 
 func (mur *mockUserRepository) Login(email, password string) (entities.User, error) {
-	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Status: "starseller"}, nil
+	return entities.User{Name: "Astuti", Phone: "7897787", Email: "a@gmail.com", Gender: "perempuan"}, nil
 }
 
 type erorrMockUserRepository struct{}

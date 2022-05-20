@@ -2,14 +2,13 @@ package projek
 
 import (
 	"net/http"
-	"time"
 )
 
 type RespondProjek struct {
 	UserID      uint      `json:"userid"`
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
-	Deadline    time.Time `json:"deadline"`
+	Date   		string 	`json:"date"`
 	Contributor string    `json:"contributor"`
 }
 

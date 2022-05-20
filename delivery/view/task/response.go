@@ -2,16 +2,14 @@ package task
 
 import (
 	"net/http"
-	"time"
 )
 
 type RespondTask struct {
-	UserID      uint      `json:"userid"`
-	ProjekID    uint      `json:"projekid"`
-	Name        string    `json:"name"`
-	Duedate     time.Time `json:"duedate"`
-	Description string    `json:"description"`
-	Status      string    `json:"status"`
+	UserID   uint   `json:"userid"`
+	ProjekID uint   `json:"projekid"`
+	Name     string `json:"name"`
+	Duedate  string `json:"duedate"`
+	Status   string `json:"status"`
 }
 
 func StatusGetAllOk(data interface{}) map[string]interface{} {
