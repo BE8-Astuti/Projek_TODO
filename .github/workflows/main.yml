@@ -47,6 +47,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          fingerprint: ${{ secrets.PUB }}
           script: |
             cd projek-todo
             docker-compose down --rmi all && docker-compose up -d
