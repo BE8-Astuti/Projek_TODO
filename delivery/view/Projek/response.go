@@ -5,11 +5,11 @@ import (
 )
 
 type RespondProjek struct {
-	UserID      uint      `json:"userid"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	Date   		string 	`json:"date"`
-	Contributor string    `json:"contributor"`
+	UserID      uint   `json:"userid"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Date        string `json:"date"`
+	Contributor string `json:"contributor"`
 }
 
 func StatusGetAllOk(data interface{}) map[string]interface{} {
