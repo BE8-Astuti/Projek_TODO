@@ -10,7 +10,7 @@ WORKDIR /app
 ADD . /app
 
 ##buat executeable
-RUN go build -o main .
+RUN go build -o /app/main /app/
 
 ##jalankan executeable
 CMD ["/app/main"]
